@@ -1,12 +1,11 @@
 {
-    "name": "vendor/package",
-    "description": "",
-    "keywords": [],
-    "homepage": "",
+    "name": "vicgonvt/LaraGallery",
+    "description": "Package for generating a media vault quickly and easily using a simple artisan command",
+    "keywords": ['media', 'images', 'laravel', 'library'],
     "authors": [
         {
-            "name": "",
-            "email": ""
+            "name": "Victor Gonzalez",
+            "email": "vicgonvt@gmail.com"
         }
     ],
     "require": {
@@ -16,10 +15,9 @@
         "phpunit/phpunit": "~4.5"
     },
     "autoload": {
-       "psr-4": {
-         "Vendor\\Package\\": "src/Package"
+        "psr-4": {
+            "vicgonvt\\LaraGallery\\": "src/LaraGallery"
         }
     },
     "license": "MIT"
-    
 }

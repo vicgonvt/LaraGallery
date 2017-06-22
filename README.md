@@ -1,13 +1,13 @@
-# Laravel 5's Package Boilerplate
+# Media Vault Generator for Laravel
 
-A custom made Laravel5 package boilerplate made for package development purpose, which contains publish code for :
+Turns a directory structure into a Laravel Media Vault with view files using a simple artisan command.
 
-- Config
-- View
-- Assets
-- Migrations
-- Seeds
-- Routes
+- Resize Thumbnails automatically
+- Organizes images following the directory structure
+- Uploads them to S3
+- Simple update command
+- Configurable
+- Open-Source & Contributable!
 
 ## Usage
 
