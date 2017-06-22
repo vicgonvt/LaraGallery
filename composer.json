@@ -1,7 +1,7 @@
 {
     "name": "vicgonvt/LaraGallery",
     "description": "Package for generating a media vault quickly and easily using a simple artisan command",
-    "keywords": ['media', 'images', 'laravel', 'library'],
+    "keywords": ["media", "images", "laravel", "library"],
     "authors": [
         {
             "name": "Victor Gonzalez",

@@ -4,12 +4,7 @@ namespace vicgonvt\LaraGallery;
 
 use Illuminate\Support\ServiceProvider;
 
-/**
- * A Laravel 5's package template.
- *
- * @author: Rémi Collin
- */
-class PackageServiceProvider extends ServiceProvider
+class LaraGalleryServiceProvider extends ServiceProvider
 {
 
     /**
