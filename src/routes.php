@@ -1,4 +1,7 @@
-<?php 
-/**
- * You may define custom routes for your package here
- */
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('media-vault', function() {
+    return 'hello from package';
+});
