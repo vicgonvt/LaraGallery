@@ -3,6 +3,7 @@
 namespace vicgonvt\LaraGallery;
 
 use Illuminate\Database\Eloquent\Model;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class LaraGalleryItem extends Model
 {
@@ -15,14 +16,33 @@ class LaraGalleryItem extends Model
 
     public function process()
     {
+        $image = Image::make($this->item_path);
+        $image->save($this->filePath());
+        $image->fit(300, 200)
+            ->save($this->filePath('-thumbs'));
 
-        dd($this->item_path);
+        $this->update([
+            'item_path' => "{$this->album->id}/{$this->id}.jpg",
+            'processed' => 1,
+        ]);
+    }
+
+    /**
+     * @param string $extras
+     *
+     * @return string
+     */
+    private function filePath($extras = '')
+    {
+        return storage_path("app/lara_gallery/{$this->album->id}/{$this->id}{$extras}.jpg");
     }
 
     // RELATIONSHIP
 
     public function album()
     {
-        return $this->belongsTo(LaraGalleryAlbum::class);
+        return $this->belongsTo(LaraGalleryAlbum::class, 'lara_gallery_album_id');
     }
+
+
 }
