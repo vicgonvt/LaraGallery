@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImagesTable extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('lara_gallery_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('album_id');
+            $table->unsignedInteger('lara_gallery_album_id');
             $table->string('image_name');
+            $table->string('item_type')->default('image');
+            $table->unsignedTinyInteger('processed')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('lara_gallery_items');
     }
 }

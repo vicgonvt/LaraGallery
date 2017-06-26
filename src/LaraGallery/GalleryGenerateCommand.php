@@ -29,19 +29,19 @@ class GalleryGenerateCommand extends Command
     {
         $libraryRoot = '/Users/victor/Desktop/testing-gallery';
 
-        Album::truncate();
-        Image::truncate();
+        LaraGalleryAlbum::truncate();
+        LaraGalleryItem::truncate();
 
         foreach (glob($libraryRoot . '/*') as $album) {
 
-            $albumModel = Album::create([
+            $albumModel = LaraGalleryAlbum::create([
                 'album_name' => $album,
             ]);
 
-            $albumModel->getAlbumImages()
+            $albumModel->getAlbumImages($album)
                 ->each(function($image) use ($albumModel) {
                     $albumModel->images()->save(
-                        Image::make([
+                        LaraGalleryItem::make([
                             'image_name' => $image
                         ])
                     );

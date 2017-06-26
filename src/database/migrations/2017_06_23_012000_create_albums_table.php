@@ -13,7 +13,7 @@ class CreateAlbumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('albums', function (Blueprint $table) {
+        Schema::create('lara_gallery_albums', function (Blueprint $table) {
             $table->increments('id');
             $table->string('album_name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateAlbumsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('albums');
+        Schema::dropIfExists('lara_gallery_albums');
     }
 }
