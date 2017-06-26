@@ -15,7 +15,7 @@ class LaraGalleryAlbum extends Model
 
     public function getAlbumImages($albumPath)
     {
-        return collect(glob($albumPath . '/*'));
+        return collect(glob($albumPath . '/*.jpg'));
     }
 
     // RELATIONSHIPS
