@@ -22,6 +22,7 @@ class LaraGalleryServiceProvider extends ServiceProvider
 
             $this->commands([
                 GalleryGenerateCommand::class,
+                GalleryProcessCommand::class,
             ]);
 
         }

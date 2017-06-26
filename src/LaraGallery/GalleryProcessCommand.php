@@ -27,6 +27,10 @@ class GalleryProcessCommand extends Command
      */
     public function fire()
     {
-        $this->info('processing files');
+        $items = LaraGalleryItem::pending()->get();
+
+        $this->info($items->count() . ' items need to be processed.');
+
+        $items->each->process();
     }
 }

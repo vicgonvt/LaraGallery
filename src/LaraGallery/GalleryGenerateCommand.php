@@ -33,11 +33,17 @@ class GalleryGenerateCommand extends Command
         LaraGalleryAlbum::truncate();
         LaraGalleryItem::truncate();
 
-        foreach (glob($libraryRoot . '/*') as $album) {
+        $directory = glob($libraryRoot . '/*');
+
+        $this->info('Processing ' . count($directory) . ' album(s).');
+
+        foreach ($directory as $album) {
 
             $albumModel = LaraGalleryAlbum::create([
                 'album_name' => $album,
             ]);
+
+            $this->line('<info>Album Name: </info>' . $albumModel->album_name);
 
             $albumModel->getAlbumImages($album)
                 ->each(function($image) use ($albumModel) {
@@ -47,9 +53,6 @@ class GalleryGenerateCommand extends Command
                         ])
                     );
                 });
-
         }
-
-        Artisan::call(GalleryProcessCommand::class);
     }
 }
