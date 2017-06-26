@@ -3,6 +3,7 @@
 namespace vicgonvt\LaraGallery;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class GalleryGenerateCommand extends Command
 {
@@ -48,5 +49,7 @@ class GalleryGenerateCommand extends Command
                 });
 
         }
+
+        Artisan::call(GalleryProcessCommand::class);
     }
 }
