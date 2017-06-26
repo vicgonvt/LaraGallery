@@ -15,7 +15,8 @@ class LaraGalleryItem extends Model
 
     public function process()
     {
-        dd('inside');
+
+        dd($this->item_path);
     }
 
     // RELATIONSHIP

@@ -16,7 +16,7 @@ class CreateItemsTable extends Migration
         Schema::create('lara_gallery_items', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('lara_gallery_album_id');
-            $table->string('image_name');
+            $table->string('item_path');
             $table->string('item_type')->default('image');
             $table->unsignedTinyInteger('processed')->default(0);
             $table->timestamps();

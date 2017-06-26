@@ -49,7 +49,7 @@ class GalleryGenerateCommand extends Command
                 ->each(function($image) use ($albumModel) {
                     $albumModel->images()->save(
                         LaraGalleryItem::make([
-                            'image_name' => $image
+                            'item_path' => $image
                         ])
                     );
                 });
