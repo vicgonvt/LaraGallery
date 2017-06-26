@@ -7,13 +7,28 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class LaraGalleryItem extends Model
 {
+    /**
+     * @var array
+     */
     protected $guarded = [];
 
+    /**
+     * Scopes the query to contain only unprocessed items in the DB.
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
     public function scopePending($query)
     {
         return $query->where('processed', 0);
     }
 
+    /**
+     * Moves the image file, generates a thumbnail and updates the DB.
+     *
+     * @return void
+     */
     public function process()
     {
         if ( ! is_dir(dirname($this->filePath()))) {
@@ -32,6 +47,8 @@ class LaraGalleryItem extends Model
     }
 
     /**
+     * Easy path generator for the full file path.
+     *
      * @param string $extras
      *
      * @return string
@@ -43,10 +60,13 @@ class LaraGalleryItem extends Model
 
     // RELATIONSHIP
 
+    /**
+     * Returns the Album associated with this item.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function album()
     {
         return $this->belongsTo(LaraGalleryAlbum::class, 'lara_gallery_album_id');
     }
-
-
 }
