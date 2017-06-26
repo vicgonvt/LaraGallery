@@ -31,6 +31,10 @@ class GalleryProcessCommand extends Command
 
         $this->info($items->count() . ' items need to be processed.');
 
-        $items->each->process();
+        $items->each(function($item) {
+            $this->line('<info>Item: </info>' . $item->item_path);
+
+            $item->process();
+        });
     }
 }

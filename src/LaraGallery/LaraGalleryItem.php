@@ -16,7 +16,10 @@ class LaraGalleryItem extends Model
 
     public function process()
     {
-        dd($this->filePath());
+        if ( ! is_dir(dirname($this->filePath()))) {
+            mkdir(dirname($this->filePath()));
+        }
+
         $image = Image::make($this->item_path);
         $image->save($this->filePath());
         $image->fit(300, 200)
