@@ -9,9 +9,10 @@
         }
     ],
     "require": {
-        "illuminate/support": "~5.0",
-        "illuminate/console": "~5.0",
-        "illuminate/database": "~5.0",
+        "illuminate/support": "5.4.*",
+        "illuminate/console": "5.4.*",
+        "illuminate/database": "5.4.*",
+        "illuminate/routing": "5.4.*",
         "intervention/image": "^2.3"
     },
     "require-dev": {

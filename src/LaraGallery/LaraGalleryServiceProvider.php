@@ -2,6 +2,7 @@
 
 namespace vicgonvt\LaraGallery;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class LaraGalleryServiceProvider extends ServiceProvider
@@ -27,10 +28,13 @@ class LaraGalleryServiceProvider extends ServiceProvider
 
         }
 
+        View::composer('LaraGallery::index', 'vicgonvt\LaraGallery\Composers\GlobalComposer');
+
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
 //        // Register Views from your package
-//        $this->loadViewsFrom(__DIR__ . '/../views', $this->packageName);
+        $this->loadViewsFrom(__DIR__ . '/../views', $this->packageName);
+
 //
 //        // Register your asset's publisher
 //        $this->publishes([

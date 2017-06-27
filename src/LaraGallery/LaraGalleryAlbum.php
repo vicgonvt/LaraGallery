@@ -11,6 +11,13 @@ class LaraGalleryAlbum extends Model
      */
     protected $guarded = [];
 
+    public function path($start = null)
+    {
+        $start = $start ?: url()->current();
+
+        return $start . '/' . $this->id . '-' . str_slug($this->album_name);
+    }
+
     /**
      * Setter method for the Album Name using the directory name.
      *

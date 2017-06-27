@@ -12,6 +12,16 @@ class LaraGalleryItem extends Model
      */
     protected $guarded = [];
 
+    public function thumbnail()
+    {
+        return "{$this->album->id}/{$this->id}-thumbs.jpg";
+    }
+
+    public function fullImage()
+    {
+        return "{$this->album->id}/{$this->id}.jpg";
+    }
+
     /**
      * Scopes the query to contain only unprocessed items in the DB.
      *
@@ -32,6 +42,10 @@ class LaraGalleryItem extends Model
     public function process()
     {
         if ( ! is_dir(dirname($this->filePath()))) {
+            if ( ! is_dir(dirname($this->filePath(), 2))) {
+                mkdir(dirname($this->filePath(), 2));
+            }
+
             mkdir(dirname($this->filePath()));
         }
 
@@ -55,7 +69,7 @@ class LaraGalleryItem extends Model
      */
     private function filePath($extras = '')
     {
-        return storage_path("app/lara_gallery/{$this->album->id}/{$this->id}{$extras}.jpg");
+        return public_path("lara_gallery/{$this->album->id}/{$this->id}{$extras}.jpg");
     }
 
     // RELATIONSHIP
