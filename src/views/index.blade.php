@@ -4,9 +4,9 @@
 
         <a href="{{ $album->path() }}">
             <img src="{{ $album->images()->first()->thumbnail() }}" class="img-responsive">
-            <h4>{{ $album->album_name }}</h4>
+            <p>{{ $album->album_name }}</p>
         </a>
 
     </div>
-    
+
 @endforeach

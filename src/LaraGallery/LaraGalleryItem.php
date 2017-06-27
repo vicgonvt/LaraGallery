@@ -33,6 +33,11 @@ class LaraGalleryItem extends Model
         return $this->item_path;
     }
 
+    public function next()
+    {
+
+    }
+
     /**
      * Scopes the query to contain only unprocessed items in the DB.
      *

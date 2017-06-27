@@ -16,6 +16,7 @@ class CreateAlbumsTable extends Migration
         Schema::create('lara_gallery_albums', function (Blueprint $table) {
             $table->increments('id');
             $table->string('album_name');
+            $table->string('category')->nullable();
             $table->timestamps();
         });
     }
