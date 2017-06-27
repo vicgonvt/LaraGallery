@@ -12,7 +12,7 @@ class GalleryGenerateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'gallery:generate';
+    protected $signature = 'gallery:generate {path}';
 
     /**
      * The console command description.
@@ -28,12 +28,10 @@ class GalleryGenerateCommand extends Command
      */
     public function fire()
     {
-        $libraryRoot = '/Users/victor/Desktop/testing-gallery';
-
         LaraGalleryAlbum::truncate();
         LaraGalleryItem::truncate();
 
-        $directory = glob($libraryRoot . '/*');
+        $directory = glob($this->argument('path') . '/*');
 
         $this->info('Processing ' . count($directory) . ' album(s).');
 

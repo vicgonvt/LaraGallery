@@ -3,6 +3,7 @@
 namespace vicgonvt\LaraGallery;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class LaraGalleryItem extends Model
@@ -12,14 +13,24 @@ class LaraGalleryItem extends Model
      */
     protected $guarded = [];
 
+    /**
+     * Returns the full path to the thumbnail image.
+     *
+     * @return string
+     */
     public function thumbnail()
     {
-        return "{$this->album->id}/{$this->id}-thumbs.jpg";
+        return $this->item_thumbnail;
     }
 
+    /**
+     * Returns the full path to the image.
+     *
+     * @return string
+     */
     public function fullImage()
     {
-        return "{$this->album->id}/{$this->id}.jpg";
+        return $this->item_path;
     }
 
     /**
@@ -41,21 +52,16 @@ class LaraGalleryItem extends Model
      */
     public function process()
     {
-        if ( ! is_dir(dirname($this->filePath()))) {
-            if ( ! is_dir(dirname($this->filePath(), 2))) {
-                mkdir(dirname($this->filePath(), 2));
-            }
+        $image = Image::make($this->item_path)->stream('jpg', 80);
+        $imageThumb = Image::make($this->item_path)->fit(400, 300)->stream('jpg', 60);
 
-            mkdir(dirname($this->filePath()));
-        }
-
-        $image = Image::make($this->item_path);
-        $image->save($this->filePath());
-        $image->fit(300, 200)
-            ->save($this->filePath('-thumbs'));
+        Storage::disk('s3')->put($this->filename(), $image->__toString());
+        Storage::disk('s3')->put($this->filename('_thumb'), $imageThumb->__toString());
 
         $this->update([
-            'item_path' => "{$this->album->id}/{$this->id}.jpg",
+            'item_path' => Storage::disk('s3')->url($this->filename()),
+            'item_thumbnail' => Storage::disk('s3')->url($this->filename('_thumb')),
+            'original_path' => $this->item_path,
             'processed' => 1,
         ]);
     }
@@ -67,9 +73,9 @@ class LaraGalleryItem extends Model
      *
      * @return string
      */
-    private function filePath($extras = '')
+    private function filename($extras = '')
     {
-        return public_path("lara_gallery/{$this->album->id}/{$this->id}{$extras}.jpg");
+        return "lara_gallery/{$this->album->id}/{$this->id}{$extras}.jpg";
     }
 
     // RELATIONSHIP

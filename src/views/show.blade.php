@@ -4,7 +4,7 @@
 
         <a href="{{ url()->current() . '/' . $image->id }}">
 
-            <img src="{{ url('lara_gallery/' . $image->thumbnail()) }}"
+            <img src="{{ $image->thumbnail() }}"
                  class="img-responsive"
                  style="padding: 15px 0;">
 

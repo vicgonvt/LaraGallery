@@ -17,6 +17,8 @@ class CreateItemsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('lara_gallery_album_id');
             $table->string('item_path');
+            $table->string('item_thumbnail')->nullable();
+            $table->string('original_path')->nullable();
             $table->string('item_type')->default('image');
             $table->unsignedTinyInteger('processed')->default(0);
             $table->timestamps();
