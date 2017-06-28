@@ -5,6 +5,7 @@ namespace vicgonvt\LaraGallery;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
+use function str_replace;
 
 class LaraGalleryItem extends Model
 {
@@ -35,7 +36,16 @@ class LaraGalleryItem extends Model
 
     public function next()
     {
+        $current = $this->id + 1;
 
+        return str_replace("/{$this->id}", "/{$current}", url()->current());
+    }
+
+    public function prev()
+    {
+        $current = $this->id - 1;
+
+        return str_replace("/{$this->id}", "/{$current}", url()->current());
     }
 
     /**

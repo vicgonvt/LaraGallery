@@ -1,5 +1,16 @@
 <div class="col-xs-12">
 
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous"><a href="{{ $item->prev() }}"><span aria-hidden="true">&larr;</span> prev</a></li>
+            <li class="next"><a href="{{ $item->next() }}">next <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+    </nav>
+
+    <p class="text-center">
+        <a href="{{ $item->fullImage() }}" download="download">download</a>
+    </p>
+
     <img src="{{ $item->fullImage() }}"
          class="img-responsive"
          style="padding: 15px 0;">
@@ -12,7 +23,4 @@
         </a>
     </div>
 
-    <p class="text-center">
-        <a href="{{ $item->fullImage() }}" download="download">download</a> |
-        prev | next</p>
 </div>

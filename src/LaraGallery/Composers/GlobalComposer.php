@@ -10,6 +10,7 @@ class GlobalComposer
     {
         $view->with('albums', LaraGalleryAlbum::has('images')
             ->orderBy('album_name', 'ASC')
+            ->with('images')
             ->get());
     }
 
