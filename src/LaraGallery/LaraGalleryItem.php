@@ -2,6 +2,7 @@
 
 namespace vicgonvt\LaraGallery;
 
+use function escapeshellcmd;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
