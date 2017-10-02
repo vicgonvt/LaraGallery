@@ -25,8 +25,10 @@ class GalleryProcessCommand extends Command
      *
      * @return void
      */
-    public function fire()
+    public function handle()
     {
+        ini_set('memory_limit', '1024M');
+
         $items = LaraGalleryItem::pending()->get();
 
         $this->info($items->count() . ' items need to be processed.');
