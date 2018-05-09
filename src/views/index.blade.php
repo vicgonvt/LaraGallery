@@ -2,21 +2,28 @@
 
     <div class="clearfix"></div>
 
-    <div class="lead padding-25">{{ $category }}</div>
+    <div class="card mb-4">
+        <div class="card-header text-white" style='background: #333;'>{{ $category }}</div>
 
-    @foreach($albums as $album)
+        <div class="card-body">
+            <div class="row">
+                @foreach($albums as $album)
 
-        <div class="col-lg-3 col-md-4 col-xs-6">
+                    <div class="col-md-3 col-4">
 
-            <a href="{{ $album->path() }}" class="thumbnail">
-                <img src="{{ $album->images->first()->thumbnail() }}" class="img-responsive">
+                        <a href="{{ $album->path() }}" class="thumbnail">
+                            <img src="{{ $album->images->first()->thumbnail() }}" class="img-fluid">
 
-                <div class="text-center" style="padding: 15px 0;">{{ $album->album_name }}</div>
+                            <div class="py-2">{{ $album->album_name }}</div>
+                        </a>
+                    </div>
 
-            </a>
-
+                @endforeach
+            </div>
         </div>
 
-    @endforeach
-
+        <div class="card-footer">
+            Last Update: {{ $album->updated_at->diffForHumans() }}
+        </div>
+    </div>
 @endforeach

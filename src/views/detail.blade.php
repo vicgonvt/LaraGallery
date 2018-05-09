@@ -1,18 +1,24 @@
-<div class="col-xs-12">
+<div class="col-12">
 
-    <nav aria-label="...">
-        <ul class="pager">
-            <li class="previous"><a href="{{ $item->prev() }}"><span aria-hidden="true">&larr;</span> prev</a></li>
-            <li class="next"><a href="{{ $item->next() }}">next <span aria-hidden="true">&rarr;</span></a></li>
-        </ul>
-    </nav>
+    <div class="row d-flex">
+        <div class="col-6">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="{{ $item->prev() }}">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="{{ $item->next() }}">Next</a></li>
+                </ul>
+            </nav>
+        </div>
 
-    <p class="text-center">
-        <a href="{{ $item->fullImage() }}" download="download">download</a>
-    </p>
+        <div class="col-6">
+            <div class="text-right">
+                <a href="{{ $item->fullImage() }}" download="download">download</a>
+            </div>
+        </div>
+    </div>
 
     <img src="{{ $item->fullImage() }}"
-         class="img-responsive"
+         class="img-fluid"
          style="padding: 15px 0;">
 
     <div>
