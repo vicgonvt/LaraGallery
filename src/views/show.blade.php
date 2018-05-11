@@ -4,7 +4,7 @@
         <div class="col-lg-3 col-md-4 col-6">
 
             <div style="position: relative;">
-                <a href="{{ url()->current() . '/' . $image->id }}">
+                <!-- <a href="{{ url()->current() . '/' . $image->id }}"> -->
 
                     <img src="{{ $image->thumbnail() }}"
                          class="img-fluid"
@@ -18,7 +18,7 @@
                         </a>
                     </div>
 
-                </a>
+                <!-- </a> -->
             </div>
 
         </div>
