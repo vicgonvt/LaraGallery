@@ -13,7 +13,7 @@
                     <div>
                         <a href="{{ $image->fullImage() }}" download="download">
 
-                            <i class="fa fa-cloud-download fa-2x download-div" aria-hidden="true"></i>
+                            <i class="fas fa-cloud-download-alt fa-2x download-div text-white" aria-hidden="true"></i>
 
                         </a>
                     </div>
