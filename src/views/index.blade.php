@@ -12,7 +12,7 @@
                     <div class="col-md-3 col-4">
 
                         <a href="{{ $album->path() }}" class="thumbnail">
-                            <img src="{{ $album->images->first()->thumbnail() }}" class="img-fluid">
+                            <img src="{{ $album->coverImage() ?? $album->images->first()->thumbnail() }}" class="img-fluid">
 
                             <div class="py-2">{{ $album->album_name }}</div>
                         </a>

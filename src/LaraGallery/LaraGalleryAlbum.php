@@ -40,6 +40,15 @@ class LaraGalleryAlbum extends Model
         return collect(glob($albumPath . '/*.jpg'));
     }
 
+    public function coverImage()
+    {
+        if (! $this->cover_id) {
+            return null;
+        }
+
+        return $this->images()->where('id', $this->cover_id)->first()->thumbnail();
+    }
+
     // RELATIONSHIPS
 
     /**
