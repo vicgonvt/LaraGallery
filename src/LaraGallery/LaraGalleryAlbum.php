@@ -15,7 +15,7 @@ class LaraGalleryAlbum extends Model
     {
         $start = $start ?: url()->current();
 
-        return $start . '/' . $this->id . '-' . str_slug($this->album_name);
+        return $start . '/' . $this->id . '-' . \Str::slug($this->album_name);
     }
 
     /**
@@ -53,7 +53,7 @@ class LaraGalleryAlbum extends Model
 
     /**
      * Returns a collection of LaraGalleryItems associated with this album.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function images()
